@@ -134,6 +134,10 @@ body {
   color: var(--accent-strong);
 }
 
+.section-spacer {
+  margin-top: 18px;
+}
+
 .grid {
   display: grid;
   gap: 24px;
