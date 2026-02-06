@@ -1,12 +1,14 @@
 :root {
   color-scheme: light;
-  --bg: #f5f7fb;
+  --bg: #f3f6fb;
   --card: #ffffff;
-  --text: #0f172a;
-  --muted: #475569;
-  --accent: #2563eb;
-  --border: #e2e8f0;
-  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --text: #0b1324;
+  --muted: #52627a;
+  --accent: #1d4ed8;
+  --accent-strong: #0f2b6d;
+  --border: rgba(148, 163, 184, 0.35);
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
 * {
@@ -16,34 +18,48 @@
 body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--bg);
+  background: radial-gradient(circle at top, #eef3ff 0%, var(--bg) 45%, #eef2f7 100%);
   color: var(--text);
+  line-height: 1.6;
 }
 
 .page {
-  max-width: 1024px;
-  margin: 40px auto 80px;
-  padding: 0 20px;
+  max-width: 1040px;
+  margin: 48px auto 96px;
+  padding: 0 20px 40px;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
+  grid-template-columns: 1.3fr 0.7fr;
   gap: 24px;
   align-items: stretch;
 }
 
 .hero__text {
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  position: relative;
+  background: linear-gradient(135deg, #0b1a3d, #1d4ed8 55%, #2a66f5 100%);
   color: white;
-  padding: 32px;
-  border-radius: 16px;
+  padding: 36px 36px 32px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero__text::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 70%);
 }
 
 .hero__text h1 {
   margin: 12px 0 8px;
-  font-size: 36px;
+  font-size: 38px;
+  letter-spacing: -0.02em;
 }
 
 .eyebrow {
@@ -55,24 +71,30 @@ body {
 
 .subtitle {
   font-size: 16px;
-  margin: 0 0 16px;
-  color: #c7d2fe;
+  margin: 0 0 18px;
+  color: #dbe4ff;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 16px;
   font-size: 13px;
   color: #e2e8f0;
 }
 
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .hero__card {
   background: var(--card);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 24px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-soft);
 }
 
 .hero__card h2 {
@@ -89,16 +111,27 @@ body {
 
 .hero__card a {
   color: var(--accent);
+  font-weight: 600;
   text-decoration: none;
+}
+
+.hero__card a:hover {
+  text-decoration: underline;
 }
 
 .card {
   background: var(--card);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 20px;
+  padding: 26px;
   margin-top: 24px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-soft);
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: var(--accent-strong);
 }
 
 .grid {
@@ -116,6 +149,20 @@ body {
   border-top: 1px solid var(--border);
   padding-top: 20px;
   margin-top: 20px;
+  position: relative;
+  padding-left: 18px;
+}
+
+.role::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(29, 78, 216, 0.12);
 }
 
 .role__header {
@@ -136,7 +183,7 @@ body {
 }
 
 ul {
-  padding-left: 20px;
+  padding-left: 18px;
   margin: 12px 0 0;
 }
 
@@ -156,14 +203,43 @@ ul li {
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: #f8fafc;
+  background: #f1f5ff;
   font-size: 13px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #ffffff, #f2f6ff);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.highlight__value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.highlight__label {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .footer {
   text-align: center;
   color: var(--muted);
-  margin-top: 32px;
+  margin-top: 40px;
   font-size: 13px;
 }
 
